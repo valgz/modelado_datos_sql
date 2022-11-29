@@ -19,18 +19,22 @@ add constraint corp_PK primary key (idcorp);
 
 create table practica.brand (
 	idbrand varchar(10) not null, --pk
+	idcorp varchar(10) not null, --fk
 	brand_name varchar(20) not null
 );
 
 alter table practica.brand
 add constraint brand_PK primary key (idbrand);
 
+alter table practica.brand
+add constraint corp_FK foreign key (idcorp)
+references practica.corporategroup (idcorp);
+
 
 
 create table practica.model (
-	idmodel varchar(10) not null, --pk, fk
+	idmodel varchar(10) not null, --pk
 	idbrand varchar(10) not null, --fk
-	idcorp varchar(10) not null, --fk
 	model_name varchar(20) not null
 );
 
@@ -41,9 +45,6 @@ alter table practica.model
 add constraint brand_FK foreign key (idbrand)
 references practica.brand (idbrand);
 
-alter table practica.model
-add constraint corp_FK foreign key (idcorp)
-references practica.corporategroup (idcorp);
 
 
 
@@ -54,20 +55,20 @@ insert into practica.corporategroup (idcorp, corp_name) values ('001', 'Volkswag
 insert into practica.corporategroup (idcorp, corp_name) values ('002', 'PSA Group');
 
 
-insert into practica.brand (idbrand, brand_name) values ('001', 'SEAT');
-insert into practica.brand (idbrand, brand_name) values ('002', 'Audi');
-insert into practica.brand (idbrand, brand_name) values ('003', 'Citroen');
-insert into practica.brand (idbrand, brand_name) values ('004', 'Peugeout');
+insert into practica.brand (idbrand, idcorp, brand_name) values ('001', '001', 'SEAT');
+insert into practica.brand (idbrand, idcorp, brand_name) values ('002', '001', 'Audi');
+insert into practica.brand (idbrand, idcorp, brand_name) values ('003', '002', 'Citroen');
+insert into practica.brand (idbrand, idcorp, brand_name) values ('004', '002', 'Peugeout');
 
 
-insert into practica.model (idmodel, idbrand, idcorp, model_name) values ('001', '001', '001', 'Ibiza');
-insert into practica.model (idmodel, idbrand, idcorp, model_name) values ('002', '001', '001', 'Ateca');
-insert into practica.model (idmodel, idbrand, idcorp, model_name) values ('003', '002', '001', 'A3');
-insert into practica.model (idmodel, idbrand, idcorp, model_name) values ('004', '002', '001', 'A4');
-insert into practica.model (idmodel, idbrand, idcorp, model_name) values ('005', '003', '002', 'C4');
-insert into practica.model (idmodel, idbrand, idcorp, model_name) values ('006', '003', '002', 'C3');
-insert into practica.model (idmodel, idbrand, idcorp, model_name) values ('007', '004', '002', '308');
-insert into practica.model (idmodel, idbrand, idcorp, model_name) values ('008', '004', '002', '208');
+insert into practica.model (idmodel, idbrand, model_name) values ('001', '001', 'Ibiza');
+insert into practica.model (idmodel, idbrand, model_name) values ('002', '001', 'Ateca');
+insert into practica.model (idmodel, idbrand, model_name) values ('003', '002', 'A3');
+insert into practica.model (idmodel, idbrand, model_name) values ('004', '002', 'A4');
+insert into practica.model (idmodel, idbrand, model_name) values ('005', '003', 'C4');
+insert into practica.model (idmodel, idbrand, model_name) values ('006', '003', 'C3');
+insert into practica.model (idmodel, idbrand, model_name) values ('007', '004', '308');
+insert into practica.model (idmodel, idbrand, model_name) values ('008', '004', '208');
 
 
 
@@ -135,7 +136,8 @@ create table practica.car (
 	registration_num varchar(15) not null, 
 	mileage integer not null,
 	insurance_num integer not null,
-	purchase_date date not null
+	purchase_date date not null,
+	observation varchar(256) null default 'Sin observaciones'
 );
 
 alter table practica.car
@@ -162,7 +164,7 @@ references practica.color (idcolor);
 insert into practica.car (idcar, idmodel, idinsurer, idcolor, registration_num, mileage, insurance_num, purchase_date) values ('001', '001', '002', '001', '9823KFH', 23000, 1092839, '2020-03-12');
 insert into practica.car (idcar, idmodel, idinsurer, idcolor, registration_num, mileage, insurance_num, purchase_date) values ('002', '007', '001', '004', '1824KFL', 34000, 2092431, '2020-09-20');
 insert into practica.car (idcar, idmodel, idinsurer, idcolor, registration_num, mileage, insurance_num, purchase_date) values ('003', '003', '004', '003', '0821AFH', 50000, 9012833, '2021-01-10');
-insert into practica.car (idcar, idmodel, idinsurer, idcolor, registration_num, mileage, insurance_num, purchase_date) values ('004', '005', '001', '003', '3825KFJ', 21000, 6092830, '2022-04-26');
+insert into practica.car (idcar, idmodel, idinsurer, idcolor, registration_num, mileage, insurance_num, purchase_date, observation) values ('004', '005', '001', '003', '3825KFJ', 21000, 6092830, '2022-04-26', 'Fallos en las luces, requiere revisión');
 insert into practica.car (idcar, idmodel, idinsurer, idcolor, registration_num, mileage, insurance_num, purchase_date) values ('005', '002', '003', '002', '4813KGH', 15000, 2012830, '2022-09-05');
 insert into practica.car (idcar, idmodel, idinsurer, idcolor, registration_num, mileage, insurance_num, purchase_date) values ('006', '008', '004', '001', '7813BGS', 12000, 8032240, '2022-11-09');
 
