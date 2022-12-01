@@ -137,7 +137,7 @@ create table practica.car (
 	mileage integer not null,
 	insurance_num integer not null,
 	purchase_date date not null,
-	observation varchar(256) null default 'Sin observaciones'
+	description varchar(256) null default 'Sin observaciones'
 );
 
 alter table practica.car
@@ -161,13 +161,16 @@ references practica.color (idcolor);
 
 --Inserción de datos en CAR
 
-insert into practica.car (idcar, idmodel, idinsurer, idcolor, registration_num, mileage, insurance_num, purchase_date) values ('001', '001', '002', '001', '9823QFH', 21000, 1092839, '2020-03-12');
-insert into practica.car (idcar, idmodel, idinsurer, idcolor, registration_num, mileage, insurance_num, purchase_date) values ('002', '007', '001', '004', '1824AML', 30000, 2092431, '2020-09-20');
-insert into practica.car (idcar, idmodel, idinsurer, idcolor, registration_num, mileage, insurance_num, purchase_date) values ('003', '003', '004', '003', '0821AFP', 45000, 9012833, '2021-01-10');
-insert into practica.car (idcar, idmodel, idinsurer, idcolor, registration_num, mileage, insurance_num, purchase_date, observation) values ('004', '005', '001', '003', '3825KFJ', 21000, 6092830, '2022-04-26', 'Fallos en las luces, requiere revisión');
-insert into practica.car (idcar, idmodel, idinsurer, idcolor, registration_num, mileage, insurance_num, purchase_date) values ('005', '002', '003', '002', '4813KGH', 15000, 2012830, '2022-09-05');
-insert into practica.car (idcar, idmodel, idinsurer, idcolor, registration_num, mileage, insurance_num, purchase_date) values ('006', '008', '004', '001', '7813BGS', 12000, 8032240, '2022-11-09');
-
+insert into practica.car (idcar, idmodel, idinsurer, idcolor, registration_num, mileage, insurance_num, purchase_date, description) values ('001', '001', '002', '001', '9823QFH', 54700, 1092839, '2020-03-12', '');
+insert into practica.car (idcar, idmodel, idinsurer, idcolor, registration_num, mileage, insurance_num, purchase_date, description) values ('002', '007', '001', '004', '1824AML', 31000, 2092431, '2020-09-20', '');
+insert into practica.car (idcar, idmodel, idinsurer, idcolor, registration_num, mileage, insurance_num, purchase_date, description) values ('003', '003', '004', '003', '0821AFP', 45800, 9012833, '2021-01-10', '');
+insert into practica.car (idcar, idmodel, idinsurer, idcolor, registration_num, mileage, insurance_num, purchase_date, description) values ('004', '005', '001', '003', '3825KFJ', 21600, 6092830, '2022-04-26', '');
+insert into practica.car (idcar, idmodel, idinsurer, idcolor, registration_num, mileage, insurance_num, purchase_date, description) values ('005', '002', '003', '002', '4813KGH', 15200, 2012830, '2022-09-05', '');
+insert into practica.car (idcar, idmodel, idinsurer, idcolor, registration_num, mileage, insurance_num, purchase_date, description) values ('006', '008', '004', '001', '7813BGS', 12000, 8032240, '2022-11-09', '');
+insert into practica.car (idcar, idmodel, idinsurer, idcolor, registration_num, mileage, insurance_num, purchase_date, description) values ('007', '004', '004', '002', '0813XGS', 11500, 5229139, '2022-12-20', '');
+insert into practica.car (idcar, idmodel, idinsurer, idcolor, registration_num, mileage, insurance_num, purchase_date, description) values ('008', '005', '001', '001', '3198DLZ', 16100, 6549893, '2023-02-11', '');
+insert into practica.car (idcar, idmodel, idinsurer, idcolor, registration_num, mileage, insurance_num, purchase_date, description) values ('009', '002', '003', '003', '3876PCM', 15900, 7341831, '2023-04-01', '');
+insert into practica.car (idcar, idmodel, idinsurer, idcolor, registration_num, mileage, insurance_num, purchase_date, description) values ('010', '007', '004', '002', '1937WDQ', 12000, 4243831, '2023-07-18', 'Fallos en las luces, requiere revisión');
 
 
 
@@ -180,7 +183,7 @@ create table practica.inspection (
 	inspect_date date not null,
 	amount decimal not null,
 	idcurrency varchar(10) not null,
-	observations varchar(256) null default 'Sin observaciones' 
+	description varchar(256) null default 'Revisión general' 
 );
 
 alter table practica.inspection
@@ -198,11 +201,11 @@ references practica.currency (idcurrency);
 --Inserción de datos en INSPECTION
 
 
-insert into practica.inspection (idcar, idinspection, mileage, inspect_date, amount, idcurrency) values ('001', '001', 21000, '2021-03-10', 149.79, '002');
-insert into practica.inspection (idcar, idinspection, mileage, inspect_date, amount, idcurrency) values ('002', '001', 30000, '2021-09-16', 179.99, '002');
-insert into practica.inspection (idcar, idinspection, mileage, inspect_date, amount, idcurrency) values ('003', '001', 45000, '2022-01-08', 169.99, '001');
-insert into practica.inspection (idcar, idinspection, mileage, inspect_date, amount, idcurrency) values ('001', '002', 32000, '2022-03-19', 219.89, '002');
-insert into practica.inspection (idcar, idinspection, mileage, inspect_date, amount, idcurrency) values ('002', '002', 40000, '2022-09-28', 279.99, '002');
+insert into practica.inspection (idcar, idinspection, mileage, inspect_date, amount, idcurrency, description) values ('001', '001', 21000, '2021-03-10', 149.79, '002', '');
+insert into practica.inspection (idcar, idinspection, mileage, inspect_date, amount, idcurrency, description) values ('002', '001', 30000, '2021-09-16', 179.99, '002', '');
+insert into practica.inspection (idcar, idinspection, mileage, inspect_date, amount, idcurrency, description) values ('003', '001', 45000, '2022-01-08', 169.99, '001', '');
+insert into practica.inspection (idcar, idinspection, mileage, inspect_date, amount, idcurrency, description) values ('001', '002', 32000, '2022-03-19', 219.89, '002', 'Luna trasera cambiada');
+insert into practica.inspection (idcar, idinspection, mileage, inspect_date, amount, idcurrency, description) values ('002', '002', 40000, '2022-09-28', 279.99, '002', 'Chasis reparado');
 
 
 
